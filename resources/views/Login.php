@@ -1,4 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia Sesión - Inversiones Garoka's Plast</title>
+    
+</head>
+<body>
+<div class="container">
+<section id="home" class="home">
 
+<div class="image myimage">
+<img src="{{ asset('images/Garoka.png') }}" alt="Logo Garoka's Plast">
+</div>
+
+<div class="content">
+  <h3>Inicia Sesion</h3>
+  <div class="col-auto">
+    <h1 class="ColorT1"><label color="3B83BD"> Correo Electronico</label><br></h4>
+    <BR>
+    <input type="text" id="inputUsuario" class="box" name="Usuario" style="border-radius: 1.5rem;">
+    <br>
+
+
+    <div class="col-auto1">    
+    <h1><label class="ColorT1" for="password">Contraseña <br></label>
+    <input  type="password" id="password" class="box" name="password" required style="border-radius: 1.5rem;">  <span  onclick="togglePassword()"><svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg></span>
+    </div>
+    <div class="col-auto">
+    </div>
+    <div class="col-auto">
+      <span id="passwordHelpInline" class="form-text">
+        Debes tener al menos 8-20 carácteres.
+      </span>
+    </div>
+  </div>
+
+
+  
+  <a  onclick="ingresar()" id="btn-zzz " class="btn2">Ingresar</a>
+
+  
+</section>
+</div>
+
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 /*determirna el color de la transicion de los botones*/
@@ -8,6 +54,25 @@
     --about-sec:#FF0000;
 }
 
+.col-auto1 input {
+            padding: 10px;
+            width: 25%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            padding-right: 0px; /* Espacio para el ícono */
+            background-color: #f0f8ff;
+}
+
+
+
+.col-auto1 .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+}
 /*determina letra del menú*/
 *{
   font-family: 'Nunito', sans-serif;
@@ -17,6 +82,10 @@
   text-decoration: none;
   text-transform: capitalize;
   transition:all .1s linear;
+}
+
+.ColorT1{
+    color: #2271b3;
 }
 
 html{
@@ -70,61 +139,6 @@ body{
   margin-top: -3.9rem;
 }
 
-/*determina la transicion del boton al recorrer*/
-.btn::before{
-  content: '';
-  position: absolute;
-  top:0; right: 0;
-  width:0%;
-  height:100%;
-  background:var(--red);
-  transition: .4s linear;
-  z-index: -1;
-}
-.btn:hover{
-  color: rgb(255, 255, 255);
-  border: .2rem solid var(--about-sec);
-}
-.btn:hover::before{
-  width:100%;
-  left: 0;
-}
-
-
-/* determinar los colores del color*/
-.btn1{
-    display: inline-block;
-    padding:.8rem 3rem;
-    border:.2rem solid var(--btn-color);
-    color:var(--btn-color);
-    cursor: pointer;
-    font-size: 1.7rem;
-    border-radius: .5rem;
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-    margin-top: 1rem;
-  }
-  
-  /*determina la transicion del boton al recorrer*/
-  .btn1::before{
-    content: '';
-    position: absolute;
-    top:0; right: 0;
-    width:0%;
-    height:100%;
-    background:var(--red);
-    transition: .4s linear;
-    z-index: -1;
-  }
-  .btn1:hover{
-    color: rgb(255, 255, 255);
-    border: .2rem solid var(--about-sec);
-  }
-  .btn1:hover::before{
-    width:100%;
-    left: 0;
-  }
 
 
 /* determinar los colores del color*/
@@ -370,3 +384,19 @@ height:90%;
   padding: 4px  8px 60px 0px;
   font-size: 20px;
 }
+
+</style>
+</body>
+<script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            var toggleBtn = document.querySelector(".toggle-btn");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+</html>
