@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="container">
+
+<form action="{{ route('login.submit') }}" method="POST">
+@csrf
 <section id="home" class="home">
 
 <div class="image myimage">
@@ -19,13 +22,13 @@
   <div class="col-auto">
     <h1 class="ColorT1"><label color="3B83BD"> Correo Electronico</label><br></h4>
     <BR>
-    <input type="text" id="inputUsuario" class="box" name="Usuario" style="border-radius: 1.5rem;">
+    <input type="email" name="email"  class="box" id="email" placeholder="Ingrese su correo" required>
     <br>
 
 
     <div class="col-auto1">    
     <h1><label class="ColorT1" for="password">Contraseña <br></label>
-    <input  type="password" id="password" class="box" name="password" required style="border-radius: 1.5rem;">  <span  onclick="togglePassword()"><svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg></span>
+    <input type="password" name="password" id="password" class="box" placeholder="Ingrese su contraseña" required> <span  onclick="togglePassword()"><svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg></span>
     </div>
     <div class="col-auto">
     </div>
@@ -38,11 +41,19 @@
 
 
   
-  <a  onclick="ingresar()" id="btn-zzz " class="btn2">Ingresar</a>
+  <button   type="submit" class="btn2">Ingresar</button>
 
   
 </section>
+</form>
 </div>
+
+
+
+
+
+
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
@@ -58,7 +69,6 @@
             padding: 10px;
             width: 25%;
             border-radius: 8px;
-            border: 1px solid #ccc;
             box-sizing: border-box;
             padding-right: 0px; /* Espacio para el ícono */
             background-color: #f0f8ff;
@@ -112,6 +122,7 @@ body{
 .home .content{
   flex: 1 1 40rem;
   padding-top: 6.5rem;
+  margin-left: 210px;
 }
 
 .home .content h3{
@@ -188,11 +199,6 @@ body{
   padding: 1rem;
   animation:float 3s linear infinite;
 }
-@keyframes float {
-  50%{
-    transform: translateY(3rem);
-  }
-}
 
 /* media si la ventana esta minimizada  */
 @media(max-width:991px){
@@ -208,6 +214,7 @@ body{
   .home .image img{
     width: 100%;
     padding-top: 8rem;
+    margin-left: 200px;
   }
 }
 
@@ -258,7 +265,7 @@ body{
 
     border-color:#d49633;
     border-width: 0px,0px,0px,10px;
-
+    border-radius:8px;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #ffffff;
