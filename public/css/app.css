@@ -41,6 +41,7 @@ body {
 .profile {
   text-align: center;
   padding-top: 38px;
+  margin-bottom: -25px;
 }
 
 .profile-image {

@@ -8,75 +8,67 @@
 <body>
 @extends('layouts.app') <!-- Extiende el layout base -->
 
-@section('title', 'Modificar Producto') <!-- Título específico de esta vista -->
+@section('title', 'Eliminar Cliente') <!-- Título específico de esta vista -->
 
 @section('content') <!-- Contenido específico de esta vista -->
 <div class="container">
-    <div class="product-form">
-        <h2>Modificar Producto</h2>
+    <div class="client-form">
+        <h2>Eliminar Cliente</h2>
         
-        <!-- Sección para buscar el producto por nombre -->
-        <form action="#" method="GET"> <!-- Ajusta la ruta para buscar el producto -->
+        <!-- Sección para buscar el cliente por RUC -->
+        <form action="#" method="GET"> <!-- Ajusta la ruta para buscar el cliente -->
             @csrf
             <div class="form-group">
-                <label for="buscar_nombre">Buscar por Nombre del Producto</label>
-                <input type="text" id="buscar_nombre" name="buscar_nombre" placeholder="Ingrese el nombre del producto" required>
+                <label for="buscar_ruc">Buscar por RUC del Cliente</label>
+                <input type="text" id="buscar_ruc" name="buscar_ruc" placeholder="Ingrese el RUC del cliente" required>
                 <button type="submit" class="buscar-button">Buscar</button>
             </div>
         </form>
 
-        <!-- Sección para modificar los datos del producto una vez encontrado -->
-        <form action="#" method="POST"> <!-- Ajusta la ruta para actualizar el producto -->
+        <!-- Sección para mostrar la información del cliente encontrado -->
+        <form action="#" method="POST"> <!-- Ajusta la ruta para eliminar el cliente -->
             @csrf
+            @method('DELETE') <!-- Método para enviar la solicitud de eliminación -->
+            
+            <!-- Campos bloqueados solo para mostrar los datos del cliente -->
             <div class="form-grid">
                 <div class="form-group">
-                    <label for="nombre">Nombre del producto</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" value="Nombre del Cliente" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="nacionalidad">Nacionalidad</label>
-                    <input type="text" id="nacionalidad" name="nacionalidad" required>
+                    <label for="dni">DNI</label>
+                    <input type="text" id="dni" name="dni" value="DNI del Cliente" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="color">Color</label>
-                    <input type="text" id="color" name="color" required>
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" value="Teléfono del Cliente" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="cantidad">Cantidad</label>
-                    <input type="number" step="any" id="cantidad" name="cantidad" required>
+                    <label for="razon_social">Razón Social</label>
+                    <input type="text" id="razon_social" name="razon_social" value="Razón Social del Cliente" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="ancho">Ancho</label>
-                    <input type="number" step="any" id="ancho" name="ancho" required>
+                    <label for="ruc">RUC</label>
+                    <input type="text" id="ruc" name="ruc" value="RUC del Cliente" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="largo">Largo</label>
-                    <input type="number" step="any" id="largo" name="largo" required>
-                </div>
-                <div class="form-group">
-                    <label for="espesor">Espesor</label>
-                    <input type="number" step="any" id="espesor" name="espesor" required>
-                </div>
-                <div class="form-group">
-                    <label for="unidad">Unidad de medida</label>
-                    <input type="text" id="unidad" name="unidad" list="unidades" required>
-                    <datalist id="unidades">
-                        <option value="ROLLOS"></option>
-                        <option value="KILOS"></option>
-                        <option value="FARDOS"></option>
-                    </datalist>
+                    <label for="direccion">Dirección</label>
+                    <input type="text" id="direccion" name="direccion" value="Dirección del Cliente" disabled>
                 </div>
             </div>
+
+            <!-- Confirmación para eliminar el cliente -->
             <div class="form-buttons">
                 <button type="button" class="cancel-button">Cancelar</button>
-                <button type="submit" class="submit-button">Guardar Cambios</button>
+                <button type="submit" class="delete-button">Eliminar Cliente</button>
             </div>
         </form>
     </div>
 </div>
 @endsection
 
-<!-- Estilo CSS con un azul menos intenso y esquema de colores ajustado -->
+<!-- Estilo CSS con el esquema de colores azul menos intenso -->
 <style>
     .container {
         width: 90%;
@@ -113,9 +105,9 @@
         background-color: #f7f9fc; /* Fondo gris claro */
         color: #000;
     }
-    .form-group input:focus {
-        border-color: #ff4b5c; /* Borde rojo al hacer foco */
-        outline: none;
+    .form-group input:disabled {
+        background-color: #e0e0e0; /* Fondo gris para los campos deshabilitados */
+        color: #808080; /* Texto gris */
     }
     .buscar-button {
         padding: 10px 20px;
@@ -142,7 +134,7 @@
         grid-column: 1 / span 2; /* Los botones ocupan ambas columnas */
     }
     .form-buttons .cancel-button, 
-    .form-buttons .submit-button {
+    .form-buttons .delete-button {
         padding: 10px 20px;
         color: white;
         border: none;
@@ -154,14 +146,14 @@
     .cancel-button {
         background-color: #ff4b5c; /* Rojo para el botón de cancelar */
     }
-    .submit-button {
-        background-color: #4a90e2; /* Azul menos intenso para el botón de guardar */
+    .delete-button {
+        background-color: #e63946; /* Rojo más intenso para el botón de eliminar */
     }
     .cancel-button:hover {
-        background-color: #e63946; /* Rojo más oscuro al pasar el cursor */
+        background-color: #d63031; /* Rojo más oscuro al pasar el cursor */
     }
-    .submit-button:hover {
-        background-color: #357ab9; /* Azul más oscuro al pasar el cursor */
+    .delete-button:hover {
+        background-color: #c0392b; /* Rojo más oscuro al pasar el cursor */
     }
 </style>
 </body>
