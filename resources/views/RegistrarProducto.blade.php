@@ -8,25 +8,13 @@
 <body>
 @extends('layouts.app') <!-- Extiende el layout base -->
 
-@section('title', 'Modificar Producto') <!-- Título específico de esta vista -->
+@section('title', 'Registrar Producto') <!-- Título específico de esta vista -->
 
 @section('content') <!-- Contenido específico de esta vista -->
 <div class="container">
     <div class="product-form">
-        <h2>Modificar Producto</h2>
-        
-        <!-- Sección para buscar el producto por nombre -->
-        <form action="#" method="GET"> <!-- Ajusta la ruta para buscar el producto -->
-            @csrf
-            <div class="form-group">
-                <label for="buscar_nombre">Buscar por Nombre del Producto</label>
-                <input type="text" id="buscar_nombre" name="buscar_nombre" placeholder="Ingrese el nombre del producto" required>
-                <button type="submit" class="buscar-button">Buscar</button>
-            </div>
-        </form>
-
-        <!-- Sección para modificar los datos del producto una vez encontrado -->
-        <form action="#" method="POST"> <!-- Ajusta la ruta para actualizar el producto -->
+        <h2>Información del producto</h2>
+        <form action="#" method="POST"> <!-- Ajusta la ruta según corresponda -->
             @csrf
             <div class="form-grid">
                 <div class="form-group">
@@ -69,7 +57,7 @@
             </div>
             <div class="form-buttons">
                 <button type="button" class="cancel-button">Cancelar</button>
-                <button type="submit" class="submit-button">Guardar Cambios</button>
+                <button type="submit" class="submit-button">Guardar Registro</button>
             </div>
         </form>
     </div>
@@ -92,21 +80,21 @@
         margin-bottom: 20px;
         text-align: center;
     }
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
+        gap: 20px; /* Espacio entre las columnas */
+    }
     .form-group {
-        margin-bottom: 15px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
     }
     .form-group label {
-        flex-basis: 25%;
-        text-align: right;
-        padding-right: 15px;
+        margin-bottom: 5px;
         font-weight: bold;
         color: #4a90e2; /* Azul menos intenso */
     }
     .form-group input {
-        flex-basis: 70%;
         padding: 10px;
         border: 1px solid #4a90e2; /* Borde azul menos intenso */
         border-radius: 5px;
@@ -116,24 +104,6 @@
     .form-group input:focus {
         border-color: #ff4b5c; /* Borde rojo al hacer foco */
         outline: none;
-    }
-    .buscar-button {
-        padding: 10px 20px;
-        margin-left: 10px;
-        background-color: #4a90e2; /* Azul menos intenso para botón de búsqueda */
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .buscar-button:hover {
-        background-color: #357ab9; /* Azul más oscuro al pasar el cursor */
-    }
-    .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
-        gap: 20px; /* Espacio entre las columnas */
     }
     .form-buttons {
         display: flex;
@@ -164,5 +134,8 @@
         background-color: #357ab9; /* Azul más oscuro al pasar el cursor */
     }
 </style>
+
+
+
 </body>
 </html>
