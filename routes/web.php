@@ -1,94 +1,73 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminLoginController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// Ruta de login para usuarios regulares
 Route::get('/', function () {
     return view('Login');
+})->name('login');
+
+// Rutas que requieren que el usuario esté autenticado
+Route::middleware('auth')->group(function () {
+    Route::get('/menu', function () {
+        return view('Menu');
+    })->name('menu');
+
+    Route::get('/gestion', function () {
+        return view('GestionProductos');
+    })->name('gestion');
+
+    Route::get('/agregar', function () {
+        return view('AgregarProducto');
+    })->name('agregar');
+
+    Route::get('/modificar', function () {
+        return view('ModificarProducto');
+    })->name('modificar');
+
+    Route::get('/eliminar', function () {
+        return view('EliminarProducto');
+    })->name('eliminar');
+
+    Route::get('/clientes', function () {
+        return view('Clientes');
+    })->name('clientes');
+
+    Route::get('/proveedores', function () {
+        return view('Proveedores');
+    })->name('proveedores');
+
+    Route::get('/pedidos', function () {
+        return view('Pedidos');
+    })->name('pedidos');
+
+    Route::get('/configurar', function () {
+        return view('Configuracion');
+    })->name('configurar');
 });
 
-//Redirecciones de Menú
+// Ruta para procesar el login de usuario regular
+Route::post('/login', [LoginController::class, 'submit'])->name('login.submit');
 
-Route::get('/menu', function () {
-    return view('Menu');
-})->name('menu');
+// Rutas para el administrador
+// Ruta para mostrar el formulario de login de administrador
+Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 
-//Ruta para el Login 
-Route::post('/', function () {
-    // Lógica de autenticación aquí
-    return redirect('/menu');
-})->name('login.submit');
+// Ruta para procesar el login de administrador
+Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
 
-//----------------Referente a productos------------------- 
+// Ruta para cerrar sesión de administrador
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
-Route::get('/gestion', function () {
-    return view('GestionProductos'); // Asegúrate de tener esta vista creada
-})->name('gestion');
+// Rutas protegidas para administradores autenticados
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/menu', function () {
+        return view('admin.Menu'); // Asegúrate de tener esta vista creada
+    })->name('admin.menu');
 
-Route::get('/registrarproducto', function () {
-    return view('RegistrarProducto'); // Asegúrate de tener esta vista creada
-})->name('registrarproducto');
-
-Route::get('/modificarproducto', function () {
-    return view('ModificarProducto'); // Asegúrate de tener esta vista creada
-})->name('modificarproducto');
-
-Route::get('/eliminarproducto', function () {
-    return view('EliminarProducto'); // Asegúrate de tener esta vista creada
-})->name('eliminarproducto');
-
-
-//-------Referentes a clientes -------------------------
-Route::get('/clientes', function () {
-    return view('Clientes'); // Asegúrate de tener esta vista creada
-})->name('clientes');
-
-Route::get('/registrarcliente', function () {
-    return view('RegistrarCliente'); // Asegúrate de tener esta vista creada
-})->name('registrarcliente');
-
-Route::get('/modificarcliente', function () {
-    return view('ModificarCliente'); // Asegúrate de tener esta vista creada
-})->name('modificarcliente');
-
-Route::get('/eliminarcliente', function () {
-    return view('EliminarCliente'); // Asegúrate de tener esta vista creada
-})->name('eliminarcliente');
-
-Route::get('/gestionarproveedor', function () {
-    return view('GestionarSucursal'); // Asegúrate de tener esta vista creada
-})->name('gestionarproveedor');
-
-
- //--------------Referente a Proveedores ---------------------------
-
-Route::get('/proveedores', function () {
-    return view('Proveedores'); // Asegúrate de tener esta vista creada
-})->name('proveedores');
-
-
-
-
-
-// --------------Referente a pedidos -------------------------------
-Route::get('/pedidos', function () {
-    return view('Pedidos'); // Asegúrate de tener esta vista creada
-})->name('pedidos');
-
-
-
-
-// ----------------Referente a config -------------------
-Route::get('/configurar', function () {
-    return view('Configuracion'); // Asegúrate de tener esta vista creada
-})->name('configurar');
+    Route::get('/admin/gestion', function () {
+        return view('admin.GestionProductos'); // Asegúrate de tener esta vista creada
+    })->name('admin.gestion');
+});

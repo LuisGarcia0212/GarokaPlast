@@ -7,8 +7,7 @@
 </head>
 @extends('layouts.app') <!-- Extiende el layout base -->
 @section('content') <!-- Contenido específico de esta vista -->
-<h1>Gestión de Productos</h1>
-<p>Aquí puedes administrar los productos de tu inventario.</p>
+
 @endsection
 <body>
 

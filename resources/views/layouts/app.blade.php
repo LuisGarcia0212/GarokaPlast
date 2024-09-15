@@ -1,20 +1,20 @@
-<!-- resources/views/layouts/app.blade.php -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    <!-- CDN de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <!-- Menú lateral -->
     <div class="sidebar" id="sidebar">
         <div class="imageLogo">
-        <a href="{{ route('menu') }}">
-            <img src="{{ asset('images/Garoka.png') }}" alt="Logo Garoka's Plast" style="height:40px">
-        </a>    
+            <a href="{{ route('menu') }}">
+                <img src="{{ asset('images/Garoka.png') }}" alt="Logo Garoka's Plast" style="height:40px">
+            </a>    
         </div>
         <div class="profile">
             <img src="{{ asset('images/rata.png') }}" alt="María" class="profile-image">
@@ -23,53 +23,41 @@
         </div>
         <nav>
             <ul>
-            <li class="dropdown">
-                    <a href="{{ route('gestion') }}" class="dropdown-toggle">Productos</a>
+                <li class="dropdown">
+                    <a href="{{ route('gestion') }}" class="dropdown-toggle">
+                        <i class="fas fa-box"></i> Gestión de Productos
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('registrarproducto') }}">Registrar Producto</a></li>
-                        <li><a href="{{ route('modificarproducto') }}">Modificar Producto</a></li>
-                        <li><a href="{{ route('eliminarproducto') }}">Eliminar Producto</a></li>
+                        <li><a href="{{ route('agregar') }}">Agregar Producto</a></li>
+                        <li><a href="{{ route('modificar') }}">Modificar Producto</a></li>
+                        <li><a href="{{ route('eliminar') }}">Eliminar Producto</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="{{ route('clientes') }}" class="dropdown-toggle">Clientes</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('registrarcliente') }}">Registrar Cliente</a></li>
-                        <li><a href="{{ route('modificarcliente') }}">Modificar Cliente</a></li>
-                        <li><a href="{{ route('eliminarcliente') }}">Eliminar Cliente</a></li>
-                    </ul>
-                <li class="dropdown">
-                    <a href="{{ route('proveedores') }}" class="dropdown-toggle">Proveedores</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('registrarproducto') }}">Registrar Proveedor</a></li>
-                        <li><a href="{{ route('modificarproducto') }}">Modificar Proveedor</a></li>
-                        <li><a href="{{ route('eliminarproducto') }}">Eliminar Proveedor</a></li>
-                        <li><a href="{{ route('gestionarproveedor') }}">Gestionar Sucursales</a></li>
-                    </ul>
-                <li class="dropdown">
-                    <a href="{{ route('pedidos') }}" class="dropdown-toggle">Transportistas</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('registrarproducto') }}">Registrar Transportista</a></li>
-                        <li><a href="{{ route('modificarproducto') }}">Modificar Transportista</a></li>
-                        <li><a href="{{ route('eliminarproducto') }}">Eliminar Transportista</a></li>
-                    </ul>
                 <li>
-                <li class="dropdown">
-                    <a href="{{ route('pedidos') }}" class="dropdown-toggle">Entradas</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('registrarproducto') }}">Facturas</a></li>
-                        <li><a href="{{ route('modificarproducto') }}">Guias</a></li>
-                    </ul>
+                    <a href="{{ route('clientes') }}">
+                        <i class="fas fa-users"></i> Clientes
+                    </a>
+                </li>
                 <li>
-                <li class="dropdown">
-                    <a href="{{ route('pedidos') }}" class="dropdown-toggle">Salidas</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('registrarproducto') }}">Facturas</a></li>
-                        <li><a href="{{ route('modificarproducto') }}">Guias</a></li>
-                    </ul>
+                    <a href="{{ route('proveedores') }}">
+                        <i class="fas fa-truck"></i> Proveedores
+                    </a>
+                </li>
                 <li>
-                <li><a href="{{ route('configurar') }}">Configuración</a></li>
-                <li><a href="{{ route('login.submit') }}">Salir</a></li>
+                    <a href="{{ route('pedidos') }}">
+                        <i class="fas fa-shopping-cart"></i> Pedidos
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('configurar') }}">
+                        <i class="fas fa-cogs"></i> Configuración
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('login.submit') }}">
+                        <i class="fas fa-sign-out-alt"></i> Salir
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
