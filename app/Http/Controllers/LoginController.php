@@ -47,4 +47,25 @@ class LoginController extends Controller
     }
 }
 
+public function showLoginForm()
+{
+    // Verificar si el usuario ya está autenticado
+    if (Auth::check()) {
+        return redirect()->route('menu'); // Redirigir al menú si ya está autenticado
+    }
+
+    return view('Login'); // Mostrar el formulario de inicio de sesión
+}
+
+ // Método para cerrar sesión
+ public function logout(Request $request)
+ {
+     Auth::logout(); // Cierra la sesión del usuario
+     $request->session()->invalidate(); // Invalida la sesión
+     $request->session()->regenerateToken(); // Regenera el token CSRF
+ 
+     return redirect()->route('login'); // Redirige al formulario de inicio de sesión
+ }
+ 
+
 }

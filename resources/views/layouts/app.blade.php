@@ -54,10 +54,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('login.submit') }}">
-                        <i class="fas fa-sign-out-alt"></i> Salir
-                    </a>
-                </li>
+    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button type="submit" style="background: none; border: none; color: inherit; padding: 0; font: inherit; cursor: pointer;">
+            <i class="fas fa-sign-out-alt"></i> Salir
+        </button>
+    </form>
+</li>
             </ul>
         </nav>
     </div>

@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminLoginController;
 
-// Ruta de login para usuarios regulares
-Route::get('/', function () {
-    return view('Login');
-})->name('login');
+
+route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 // Rutas que requieren que el usuario esté autenticado
 Route::middleware('auth')->group(function () {
@@ -71,3 +69,6 @@ Route::middleware('auth:admin')->group(function () {
         return view('admin.GestionProductos'); // Asegúrate de tener esta vista creada
     })->name('admin.gestion');
 });
+
+// Ruta para cerrar sesión
+route::post('/logout', [LoginController::class, 'logout'])->name('logout');
