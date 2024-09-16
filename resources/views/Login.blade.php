@@ -70,6 +70,17 @@
     </script>
 @endif
 
+<!-- JavaScript para mostrar/ocultar contraseña -->
+<script>
+    function togglePassword() {
+        var passwordField = document.getElementById('password');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    }
+</script>
 
 
 <style>
