@@ -11,7 +11,7 @@ body {
 .topbar {
   
   height: 60px;
-  background-color: #f0f0f0;
+  background-color: #dcdcdc;
   display: flex;
   justify-content: space-between;
   align-items: center;
