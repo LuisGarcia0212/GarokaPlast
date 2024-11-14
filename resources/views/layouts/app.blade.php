@@ -1,17 +1,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<title>Garoka Plast</title>
-
-	<!-- Main Styles -->
-	
+    <title>Garoka Plast</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -69,22 +68,12 @@
 				</li>
 			</ul>
 			<!-- /.menu js__accordion -->
-			<h5 class="title">Proveedores</h5>
+			<h5 class="title">Gestión de Proveedores</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li>
         <a class="waves-effect" href="{{ route('proveedores') }}"><i class="menu-icon fa fa-calendar"></i><span>Proveedores</span></a>
 				</li>
-				<li>
-					<a class="waves-effect" href="{{ route('proveedores') }}"><i class="menu-icon fa fa-calendar"></i><span>Nuevo Proveedor</span></a>
-				</li>
-        <li>
-					<a class="waves-effect" href="calendar.html"><i class="menu-icon fa fa-calendar"></i><span>Editar Proveedor</span></a>
-				</li>
-        <li>
-					<a class="waves-effect" href="calendar.html"><i class="menu-icon fa fa-calendar"></i><span>Eliminar Proveedor</span></a>
-				</li>
-				
 			</ul>
 			<!-- /.menu js__accordion -->
 			<h5 class="title">Adicional</h5>
@@ -133,6 +122,11 @@
 </div>
 
 <!-- /.fixed-navbar -->
+
+<!-- Contenedor principal para el contenido de las vistas -->
+  <div class="main-content">
+    @yield('content')
+  </div>
 
 <!-- /#message-popup -->
 <div id="color-switcher">
@@ -409,6 +403,11 @@ label {
   opacity: 0;
 }
 @media (max-width: 799px) {
+    .main-content {
+      min-height: 100vh;
+      background: #f5f7fa;
+      padding-top: 75px; /* Altura de la barra superior */
+    }
     .main-menu .header {
         text-align: left;
         padding-left: 20px;
@@ -471,7 +470,7 @@ h4 strong {
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 30;
+  z-index: 1000;
   width: 260px;
   height: 100%;
   padding-top: 185px;
@@ -512,19 +511,19 @@ h4 strong {
 }
 .main-content {
   position: relative;
-  z-index: 10;
-  margin-left: 280px;
+  z-index: 50;
+  margin-left: 200px;
   margin-right: 20px;
-  padding-top: 95px;
+  padding-top: 50px;
 }
 
 .fixed-navbar {
   position: fixed;
   top: 0px;
   left: 260px;
-  z-index: 20;
+  z-index: 999;
   right: 0px;
-  padding: 0px 20px 0px 80px;
+  height: 75px;
   background: #dcdcdc;
   color: #000000;
 }
@@ -950,7 +949,7 @@ h4 strong {
   background: radial-gradient(rgba(113, 182, 249, 0.2) 0, rgba(113, 182, 249, 0.3) 40%, rgba(113, 182, 249, 0.4) 50%, rgba(113, 182, 249, 0.5) 60%, rgba(113, 182, 249, 0) 70%);
 }
 .main-menu.menu-open {
-    left: 0; /* El menú se desplaza hacia la pantalla */
+  transform: translateX(0);
 }
 
 @media (min-width: 800px) {
