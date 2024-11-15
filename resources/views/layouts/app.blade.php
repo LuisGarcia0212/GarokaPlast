@@ -11,8 +11,21 @@
 	<title>Garoka Plast</title>
 
 	<!-- Main Styles -->
-	
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Google ANAL (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YPEJL1L3J"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0YPEJL1L3J', {
+          'debug_mode': true, // Modo debug para entornos locales
+          'cookie_domain': 'none' // Desactiva el requisito de dominio
+     });
+  </script>
 </head>
+
 
 <body>
 <div class="main-menu">
@@ -75,15 +88,6 @@
 				<li>
         <a class="waves-effect" href="{{ route('proveedores') }}"><i class="menu-icon fa fa-calendar"></i><span>Proveedores</span></a>
 				</li>
-				<li>
-					<a class="waves-effect" href="{{ route('proveedores') }}"><i class="menu-icon fa fa-calendar"></i><span>Nuevo Proveedor</span></a>
-				</li>
-        <li>
-					<a class="waves-effect" href="calendar.html"><i class="menu-icon fa fa-calendar"></i><span>Editar Proveedor</span></a>
-				</li>
-        <li>
-					<a class="waves-effect" href="calendar.html"><i class="menu-icon fa fa-calendar"></i><span>Eliminar Proveedor</span></a>
-				</li>
 				
 			</ul>
 			<!-- /.menu js__accordion -->
@@ -133,6 +137,11 @@
 </div>
 
 <!-- /.fixed-navbar -->
+
+<!-- Contenedor principal para el contenido de las vistas -->
+<div class="main-content">
+  @yield('content')
+</div>
 
 <!-- /#message-popup -->
 <div id="color-switcher">
@@ -513,7 +522,7 @@ h4 strong {
 .main-content {
   position: relative;
   z-index: 10;
-  margin-left: 280px;
+  margin-left: 200px;
   margin-right: 20px;
   padding-top: 95px;
 }

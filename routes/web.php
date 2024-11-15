@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\ProveedorController;
 
 
 route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
@@ -33,9 +34,15 @@ Route::middleware('auth')->group(function () {
         return view('Clientes');
     })->name('clientes');
 
-    Route::get('/proveedores', function () {
-        return view('Proveedores');
-    })->name('proveedores');
+    // Rutas para proveedores
+    Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores');
+    Route::get('/proveedores/modals', [ProveedorController::class, 'modals'])->name('proveedores.modals');
+    Route::get('/proveedores/create', [ProveedorController::class, 'create'])->name('proveedores.create');
+    Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store');
+    Route::get('/proveedores/{id}', [ProveedorController::class, 'show'])->name('proveedores.show');
+    Route::get('/proveedores/{id}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
+    Route::put('/proveedores/{id}', [ProveedorController::class, 'update'])->name('proveedores.update');
+    Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 
     Route::get('/pedidos', function () {
         return view('Pedidos');
