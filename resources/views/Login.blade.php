@@ -14,6 +14,19 @@
             margin-top: 10px;
         }
     </style>
+
+ <!-- Google ANALitycs (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YPEJL1L3J"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0YPEJL1L3J', {
+          'debug_mode': true, // Modo debug para entornos locales
+          'cookie_domain': 'none' // Desactiva el requisito de dominio
+     });
+  </script>
+
 </head>
 <body>
 <div class="container">
