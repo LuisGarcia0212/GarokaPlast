@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model
 {
+    protected $table = 'proveedores'; // Nombre de la tabla
     use HasFactory;
     protected $fillable = [
         'razon_social',
