@@ -9,7 +9,8 @@ class ProveedorController extends Controller
     /*** Muestra la lista de proveedores*/
     public function index()
     {
-        return view('Proveedores');
+        return view('Proveedor');
+
     }
 
     /*** Muestra el formulario para crear un nuevo proveedor*/

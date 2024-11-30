@@ -5,7 +5,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\ProveedorController;
 
-
 route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 // Rutas que requieren que el usuario esté autenticado
@@ -43,7 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/proveedores/{id}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
     Route::put('/proveedores/{id}', [ProveedorController::class, 'update'])->name('proveedores.update');
     Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
-
     Route::get('/pedidos', function () {
         return view('Pedidos');
     })->name('pedidos');

@@ -79,17 +79,16 @@
 </form>
 </div>
 
-
 <!-- Mostrar mensajes de éxito o error como alert -->
 @if(session('error'))
     <script>
-        alert('{{ session('error') }}');
+        alert('{!! addslashes(session('error')) !!}');
     </script>
 @endif
 
 @if(session('success'))
     <script>
-        alert('{{ session('success') }}');
+        alert('{!! addslashes(session('success')) !!}');
     </script>
 @endif
 
