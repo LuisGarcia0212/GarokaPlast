@@ -16,8 +16,10 @@ class Proveedor extends Model
         'persona_contacto',
         'numero_contacto'
     ];
+    
     public function Productos()
     {
         return $this->hasMany(Producto::class, 'Proveedor_idProveedor');
     }
+
 }
