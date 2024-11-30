@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
         return view('Clientes');
     })->name('clientes');
 
+    Route::get('/dasboard', function () {
+        return view('dashboard');
+    })->name('dasboard');
+
     // Rutas para proveedores
     Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores');
     Route::get('/proveedores/modals', [ProveedorController::class, 'modals'])->name('proveedores.modals');
