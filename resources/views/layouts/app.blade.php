@@ -30,7 +30,7 @@
 <body>
 <div class="main-menu">
 <header class="header">
-    <a href="{{ route('menu') }}" class="logo">
+    <a href="{{ route('dasboard') }}" class="logo">
         <img src="{{ asset('images/Garoka.png') }}" alt="Logo Garoka's Plast" class="pesheto" style="height:65px">
     </a>
     <button type="button" class="button-close fa fa-times js__menu_close"></button>
@@ -58,6 +58,7 @@
 				<li>
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon fa fa-flag"></i><span>Productos</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
+          <li><a href="{{ route('gestion') }}">Lista de Productos</a></li>
 						<li><a href="{{ route('agregar') }}">Registrar Producto</a></li>
 						<li><a href="{{ route('modificar') }}">Editar productos</a></li>
 					</ul>
@@ -66,16 +67,14 @@
 				<li>
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon fa fa-adjust"></i><span>Factura</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
-						<li><a href="ui-buttons.html">Agregar Factura</a></li>
-						<li><a href="ui-cards.html">Editar Factura</a></li>
+            <li><a href="{{ route('gestionfactura') }}">Lista Facturas</a></li>
+						<li><a href="{{ route('agregarfactura') }}">Agregar Factura</a></li>
+						<li><a href="{{ route('eliminarFactura') }}">Eliminar Factura</a></li>
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>
 				<li>
-        <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon fa fa-adjust"></i><span>Reposición</span><span class="notice notice-yellow">2</span></a>
-          <ul class="sub-menu js__content">
-						<li><a href="ui-buttons.html">Nueva reposición</a></li>
-					</ul>
+        <a class="waves-effect" href="{{ route('solicitudes') }}"><i class="menu-icon fa fa-adjust"></i><span>Solicitudes</span><span class="notice notice-yellow">2</span></a>
         </li>
         <li>
 					<a class="waves-effect" href="{{ route('gestion') }}"><i class="menu-icon fa fa-calendar"></i><span>Stock</span></a>
@@ -88,7 +87,6 @@
 				<li>
         <a class="waves-effect" href="{{ route('proveedores') }}"><i class="menu-icon fa fa-calendar"></i><span>Proveedores</span></a>
 				</li>
-				
 			</ul>
 			<!-- /.menu js__accordion -->
 			<h5 class="title">Adicional</h5>

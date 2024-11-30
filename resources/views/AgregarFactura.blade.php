@@ -3,63 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Producto</title>
+    <title>Agregar Factura</title>
 </head>
 <body>
 @extends('layouts.app') <!-- Extiende el layout base -->
 
-@section('title', 'Registrar Producto') <!-- Título específico de esta vista -->
+@section('title', 'Agregar Factura') <!-- Título específico de esta vista -->
 
 @section('content') <!-- Contenido específico de esta vista -->
 <div class="container">
-    <div class="product-form">
-        <h2>Registrar Nuevo Producto</h2>
+    <div class="factura-form">
+        <h2>Agregar Nueva Factura</h2>
 
-        <!-- Formulario para registrar un nuevo producto -->
-        <form action="#" method="POST"> <!-- Ajusta la ruta para registrar el producto -->
+        <!-- Formulario para agregar una nueva factura -->
+        <form action="#" method="POST"> <!-- Ajusta la ruta para agregar la factura -->
             @csrf
             <div class="form-grid">
                 <div class="form-group">
-                    <label for="nombre">Nombre del producto</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" required>
+                    <label for="id_cliente">ID Cliente</label>
+                    <input type="text" id="id_cliente" name="id_cliente" placeholder="Ingrese el ID del cliente" required>
                 </div>
                 <div class="form-group">
-                    <label for="nacionalidad">Nacionalidad</label>
-                    <input type="text" id="nacionalidad" name="nacionalidad" placeholder="Ingrese la nacionalidad" required>
+                    <label for="total_bruto">Total Bruto</label>
+                    <input type="number" step="any" id="total_bruto" name="total_bruto" placeholder="Ingrese el total bruto" required>
                 </div>
                 <div class="form-group">
-                    <label for="color">Color</label>
-                    <input type="text" id="color" name="color" placeholder="Ingrese el color" required>
-                </div>
-                <div class="form-group">
-                    <label for="cantidad">Cantidad</label>
-                    <input type="number" step="any" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" required>
-                </div>
-                <div class="form-group">
-                    <label for="ancho">Ancho</label>
-                    <input type="number" step="any" id="ancho" name="ancho" placeholder="Ingrese el ancho" required>
-                </div>
-                <div class="form-group">
-                    <label for="largo">Largo</label>
-                    <input type="number" step="any" id="largo" name="largo" placeholder="Ingrese el largo" required>
-                </div>
-                <div class="form-group">
-                    <label for="espesor">Espesor</label>
-                    <input type="number" step="any" id="espesor" name="espesor" placeholder="Ingrese el espesor" required>
-                </div>
-                <div class="form-group">
-                    <label for="unidad">Unidad de medida</label>
-                    <input type="text" id="unidad" name="unidad" list="unidades" placeholder="Seleccione una unidad" required>
-                    <datalist id="unidades">
-                        <option value="ROLLOS"></option>
-                        <option value="KILOS"></option>
-                        <option value="FARDOS"></option>
-                    </datalist>
+                    <label for="fecha_emision">Fecha de Emisión</label>
+                    <input type="date" id="fecha_emision" name="fecha_emision" required>
                 </div>
             </div>
             <div class="form-buttons">
                 <button type="reset" class="cancel-button">Cancelar</button>
-                <button type="submit" class="submit-button">Registrar Producto</button>
+                <button type="submit" class="submit-button">Agregar Factura</button>
             </div>
         </form>
     </div>

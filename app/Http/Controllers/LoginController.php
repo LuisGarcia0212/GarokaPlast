@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 class LoginController extends Controller
 {
     public function submit(Request $request)
@@ -25,13 +25,13 @@ class LoginController extends Controller
         Session::forget('intentos');
         Session::forget('bloqueado');
 
-        \Log::info('Inicio de sesión exitoso para el usuario: ' . $request->input('email'));
+        Log::info('Inicio de sesión exitoso para el usuario: ' . $request->input('email'));
 
         // Redirigir al menú
-        return redirect()->route('menu')->with('success', 'Inicio de sesión exitoso.');
+        return redirect()->route('dasboard')->with('success', 'Inicio de sesión exitoso.');
     } else {
-        \Log::info('Fallo de autenticación para el usuario: ' . $request->input('email'));
-        \Log::info('Credenciales proporcionadas: ' . json_encode($credentials));
+        Log::info('Fallo de autenticación para el usuario: ' . $request->input('email'));
+        Log::info('Credenciales proporcionadas: ' . json_encode($credentials));
 
         // Manejar intentos fallidos
         $intentos = Session::get('intentos', 0) + 1;
