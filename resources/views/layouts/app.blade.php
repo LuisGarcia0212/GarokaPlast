@@ -53,7 +53,7 @@
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li class="current">
-					<a class="waves-effect" href="index.html"><i class="menu-icon fa fa-home"></i><span>Dashboard</span></a>
+					<a class="waves-effect" href="{{ route('dasboard') }}"><i class="menu-icon fa fa-home"></i><span>Dashboard</span></a>
 				</li>
 				<li>
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon fa fa-flag"></i><span>Productos</span><span class="menu-arrow fa fa-angle-down"></span></a>
@@ -124,10 +124,7 @@
         <!-- Botón de menú tipo hamburguesa -->
         <button type="button" class="menu-mobile-button fas fa-bars js__menu_mobile"><div class="topbar">
         <div class="hamburger-menu" id="menuToggle">
-            <img src="{{ asset('images/botondemenu.png') }}" alt="Menu" class="hamburger-icon" id="hamburgerIcon" style="width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease-in-out;
-    margin-left: 0px;">
+            
         </div>
     </div></button>
         <!-- Texto Home -->
@@ -664,7 +661,7 @@ h4 strong {
 .header .logo {
   position: absolute;
   top: 0;
-  left: -39px;
+  right: 36px; 
   width: 100%;
   text-align: center;
   font-family: "Poppins", sans-serif;
