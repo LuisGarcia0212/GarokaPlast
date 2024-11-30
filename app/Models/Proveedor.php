@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model
 {
-    protected $table = 'proveedores'; // Nombre de la tabla
+    protected $table = 'proveedor'; // Nombre de la tabla
     use HasFactory;
     protected $fillable = [
         'razon_social',
@@ -16,4 +16,8 @@ class Proveedor extends Model
         'persona_contacto',
         'numero_contacto'
     ];
+    public function Productos()
+    {
+        return $this->hasMany(Producto::class, 'Proveedor_idProveedor');
+    }
 }
