@@ -5,89 +5,67 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
     public function submit(Request $request)
-    {
-        // Verificar si la cuenta está bloqueada
-        if (Session::has('bloqueado') && now()->lt(session('bloqueado'))) {
-            $tiempo_restante = now()->diffInMinutes(session('bloqueado'));
-            return redirect()->back()->with([
-                'error' => "Cuenta bloqueada. Inténtalo de nuevo en $tiempo_restante minutos.",
-                'intentos' => 3  // Para mostrar las X en el frontend
-            ]);
-        }
+{
+    // Verificar si la cuenta está bloqueada
+    if (Session::has('bloqueado') && now()->lt(session('bloqueado'))) {
+        $tiempo_restante = now()->diffInMinutes(session('bloqueado'));
+        return back()->with('error', "Has fallado 3 veces. Inténtalo de nuevo en $tiempo_restante minutos.");
+    }
 
-        // Validar los campos del formulario
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+    // Obtener las credenciales
+    $credentials = $request->only('email', 'password');
 
-        // Obtener las credenciales
-        $credentials = $request->only('email', 'password');
+    // Intentar autenticación
+    if (Auth::attempt($credentials)) {
+        // Restablecer los intentos fallidos
+        Session::forget('intentos');
+        Session::forget('bloqueado');
 
-        // Intentar autenticación
-        if (Auth::attempt($credentials)) {
-            // Limpiar variables de sesión
-            Session::forget(['intentos', 'bloqueado']);
-            
-            // Regenerar la sesión para prevenir ataques de fijación de sesión
-            $request->session()->regenerate();
+        \Log::info('Inicio de sesión exitoso para el usuario: ' . $request->input('email'));
 
-            Log::info('Inicio de sesión exitoso', ['email' => $request->email]);
-
-            return redirect()
-                ->route('menu')
-                ->with('success', '¡Bienvenido! Has iniciado sesión correctamente.');
-        }
+        // Redirigir al menú
+        return redirect()->route('menu')->with('success', 'Inicio de sesión exitoso.');
+    } else {
+        \Log::info('Fallo de autenticación para el usuario: ' . $request->input('email'));
+        \Log::info('Credenciales proporcionadas: ' . json_encode($credentials));
 
         // Manejar intentos fallidos
         $intentos = Session::get('intentos', 0) + 1;
         Session::put('intentos', $intentos);
 
-        Log::warning('Intento de inicio de sesión fallido', [
-            'email' => $request->email,
-            'intentos' => $intentos
-        ]);
-
         if ($intentos >= 3) {
             Session::put('bloqueado', now()->addMinutes(3));
-            Session::put('intentos', 3); // Mantener en 3 para la visualización
-            
-            return redirect()->back()->with([
-                'error' => 'Cuenta bloqueada por 3 minutos debido a múltiples intentos fallidos.',
-                'intentos' => 3
-            ]);
+            Session::forget('intentos');
+            return back()->with('error', 'Has fallado 3 veces. Bloqueado por 3 minutos.');
+        } else {
+            return back()->with('error', "Usuario o contraseña incorrectos. Intento $intentos de 3.");
         }
+    }
+}
 
-        return redirect()->back()->with([
-            'error' => "Credenciales incorrectas. Intento $intentos de 3.",
-            'intentos' => $intentos
-        ]);
+public function showLoginForm()
+{
+    // Verificar si el usuario ya está autenticado
+    if (Auth::check()) {
+        return redirect()->route('menu'); // Redirigir al menú si ya está autenticado
     }
 
-    public function showLoginForm()
-    {
-        if (Auth::check()) {
-            return redirect()->route('menu');
-        }
+    return view('Login'); // Mostrar el formulario de inicio de sesión
+}
 
-        return view('Login');
-    }
+ // Método para cerrar sesión
+ public function logout(Request $request)
+ {
+     Auth::logout(); // Cierra la sesión del usuario
+     $request->session()->invalidate(); // Invalida la sesión
+     $request->session()->regenerateToken(); // Regenera el token CSRF
+ 
+     return redirect()->route('login'); // Redirige al formulario de inicio de sesión
+ }
+ 
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        
-        // Invalidar la sesión y regenerar el token
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()
-            ->route('login')
-            ->with('success', 'Has cerrado sesión correctamente.');
-    }
 }

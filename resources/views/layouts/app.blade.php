@@ -131,7 +131,7 @@
         </div>
     </div></button>
         <!-- Texto Home -->
-        <h1 class="page-title">Home</h1>
+        <h1 class="page-title" style="margin-left: 90px;">Home</h1>
     </div>
     <!-- /.float-left -->
 </div>

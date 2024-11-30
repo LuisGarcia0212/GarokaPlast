@@ -5,7 +5,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\ProveedorController;
 
-route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'submit'])->name('login.submit');
+
+
 
 // Rutas que requieren que el usuario esté autenticado
 Route::middleware('auth')->group(function () {
@@ -42,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/proveedores/{id}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
     Route::put('/proveedores/{id}', [ProveedorController::class, 'update'])->name('proveedores.update');
     Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
+
     Route::get('/pedidos', function () {
         return view('Pedidos');
     })->name('pedidos');
@@ -76,4 +81,4 @@ Route::middleware('auth:admin')->group(function () {
 });
 
 // Ruta para cerrar sesión
-route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
